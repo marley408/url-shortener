@@ -1,0 +1,6 @@
+POST http://localhost:5000/api/url/shorten
+Content-Type:  application/json
+
+{
+  "longUrl": "https://www.amazon.com/All-new-Echo-Dot-3rd-Gen/dp/B0792KTHKJ/ref=br_msw_pdt-5/135-4202113-1849152?_encoding=UTF8&smid=ATVPDKIKX0DER&pf_rd_m=ATVPDKIKX0DER&pf_rd_s=&pf_rd_r=C38NAS9VC0FVP0TFT6KP&pf_rd_t=36701&pf_rd_p=4a301102-163a-4633-a63d-1ab7d69670e9&pf_rd_i=desktop"
+}
