@@ -9,6 +9,10 @@
   color: lightcoral;
 }
 
+.logo2 {
+  font-size: 10px;
+}
+
 .navbar {
   background-color: rgb(97, 97, 97);
 }
@@ -71,4 +75,9 @@ a:hover {
 }
 .url {
   color: lightcoral;
+}
+
+/* login and register component */
+.login-register {
+  margin-top: 5%;
 }

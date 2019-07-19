@@ -9,6 +9,7 @@ export default class Navbar extends Component {
         <div className="container">
           <div className="navbar-brand" href="#">
             <h1 className="logo">Shortly</h1>
+            {/* <p className="logo2">URL Shortener</p> */}
           </div>
           <button
             className="navbar-toggler"

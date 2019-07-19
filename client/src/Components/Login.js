@@ -5,7 +5,7 @@ import '../App.css';
 export default class Landing extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container login-register">
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card card-signin my-5">
@@ -35,16 +35,6 @@ export default class Landing extends Component {
                     <label for="inputPassword">Password</label>
                   </div>
 
-                  <div className="custom-control custom-checkbox mb-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck1"
-                    />
-                    <label className="custom-control-label" for="customCheck1">
-                      Remember password
-                    </label>
-                  </div>
                   <button
                     className="btn btn-lg btn-block text-uppercase"
                     type="submit"
@@ -56,8 +46,7 @@ export default class Landing extends Component {
                     class="btn btn-lg btn-google btn-block text-uppercase"
                     type="submit"
                   >
-                    <i class="fab fa-google mr-2"></i> No account? Register
-                    here.
+                    No account? Register here.
                   </button>
                 </form>
               </div>
