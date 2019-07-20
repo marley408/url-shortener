@@ -1,10 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Dashboard from './Pages/Dashboard';
+import Home from './Pages/Home';
 import History from './Pages/History';
 import Landing from './Pages/Landing';
-import RegisterPage from './Pages/RegisterPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => (
@@ -12,8 +10,7 @@ const App = () => (
     <div className="App">
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/home" component={Dashboard} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/history" component={History} />
         />
       </Switch>
