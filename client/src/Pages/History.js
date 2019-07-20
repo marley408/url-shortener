@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
 
+// will need to use useEffect here to make call to api to update/display link history
+
 const History = () => {
   return (
     <div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Navbar extends Component {
-  // need to set state for current page to be highlighted
+  // need to set state for current page link to be highlighted
 
   render() {
     return (
