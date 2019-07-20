@@ -2,7 +2,7 @@ import React from 'react';
 
 const LongUrl = ({ toggleUrlBox }) => {
   return (
-    <div className="App">
+    <div className="container">
       <form className="input-form">
         <input
           className="input-bar"

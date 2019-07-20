@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import LongUrl from '../Components/LongUrl';
 import ShortUrl from '../Components/ShortUrl';
@@ -15,7 +15,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar />
       {renderUrlBox()}
       {/* <div className="App">
@@ -36,7 +36,7 @@ const Home = () => {
           </button>
         </div>
       </div> */}
-    </div>
+    </>
   );
 };
 
