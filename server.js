@@ -1,6 +1,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const authRoute = require('./routes/auth');
+// example route
+const postRoute = require('./routes/example');
 
 const app = express();
 
@@ -14,6 +16,7 @@ app.use(express.json({ extended: false }));
 app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
 app.use('/api/user', authRoute);
+app.use('/api/posts', postRoute);
 
 const PORT = 5000;
 
