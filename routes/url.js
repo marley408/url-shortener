@@ -15,7 +15,7 @@ router.post('/shorten', async (req, res) => {
 
   // check base url
   if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json('invalid ase url');
+    return res.status(401).json('invalid base url');
   }
 
   // create url code

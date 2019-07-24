@@ -5,10 +5,12 @@ import '../App.css';
 const Register = props => {
   const { toggleForm } = props;
 
+  const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
+  // if passwords do not match, alert user and do not submit form
   const registerBtn = e => {
     if (confirmPassword !== password) {
       alert('passwords dont match');
@@ -23,6 +25,7 @@ const Register = props => {
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({
+          name: name,
           email: email,
           password: password
         })
@@ -42,8 +45,22 @@ const Register = props => {
         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div className="card card-signin my-5">
             <div className="card-body">
-              <h5 className="card-title text-center">Sign In</h5>
+              <h5 className="card-title text-center">Sign Up</h5>
               <form className="form-signin">
+                <div className="form-label-group">
+                  <input
+                    onChange={e => {
+                      setName(e.target.value);
+                    }}
+                    type="text"
+                    id="inputName"
+                    className="form-control"
+                    placeholder="Name"
+                    required
+                    autoFocus
+                  />
+                  <label htmlFor="inputName">Name</label>
+                </div>
                 <div className="form-label-group">
                   <input
                     onChange={e => {
