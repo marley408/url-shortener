@@ -17,6 +17,10 @@
   background-color: rgb(97, 97, 97);
 }
 
+.sign-out {
+  color: lightcoral;
+}
+
 /* URL input form */
 .input-form {
   min-height: 10vh;

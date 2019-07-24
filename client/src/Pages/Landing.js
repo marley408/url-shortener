@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Navbar from '../Components/Navbar';
+import LandingNav from '../Components/LandingNav';
 import Login from '../Components/Login';
 import Register from '../Components/Register';
 
 const Landing = () => {
   const [isLoginShowing, setState] = useState(true);
-  console.log(isLoginShowing);
+  // console.log(isLoginShowing);
 
   const renderForm = () => {
     if (isLoginShowing) {
@@ -19,7 +19,7 @@ const Landing = () => {
 
   return (
     <div>
-      <Navbar />
+      <LandingNav />
       {renderForm()}
     </div>
   );

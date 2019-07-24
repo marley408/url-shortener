@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Landing.css';
 import '../App.css';
 
 const Register = props => {
   const { toggleForm } = props;
+
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
+
+  const registerBtn = e => {
+    if (confirmPassword !== password) {
+      alert('passwords dont match');
+    } else {
+      e.preventDefault();
+      fetch('http://localhost:5000/api/user/register', {
+        mode: 'cors',
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+          }
+        });
+    }
+  };
+
   return (
     <div className="container login-register">
       <div className="row">
@@ -14,47 +46,57 @@ const Register = props => {
               <form className="form-signin">
                 <div className="form-label-group">
                   <input
+                    onChange={e => {
+                      setEmail(e.target.value);
+                    }}
                     type="email"
                     id="inputEmail"
                     className="form-control"
                     placeholder="Email address"
                     required
-                    autofocus
+                    autoFocus
                   />
-                  <label for="inputEmail">Email address</label>
+                  <label htmlFor="inputEmail">Email address</label>
                 </div>
 
                 <div className="form-label-group">
                   <input
+                    onChange={e => {
+                      setPassword(e.target.value);
+                    }}
                     type="password"
                     id="inputPassword"
                     className="form-control"
                     placeholder="Password"
                     required
                   />
-                  <label for="inputPassword">Password</label>
+                  <label htmlFor="inputPassword">Password</label>
                 </div>
                 <div className="form-label-group">
                   <input
+                    onChange={e => {
+                      setConfirmPassword(e.target.value);
+                    }}
                     type="password"
-                    id="inputPassword"
+                    id="inputConfirmPassword"
                     className="form-control"
                     placeholder="Password"
                     required
                   />
-                  <label for="inputPassword">Confirm password</label>
+                  <label htmlFor="inputConfirmPassword">Confirm password</label>
                 </div>
 
                 <button
+                  onClick={e => registerBtn(e)}
                   className="btn btn-lg btn-block text-uppercase"
                   type="submit"
                 >
-                  Sign up
+                  Register
                 </button>
                 <hr className="my-4" />
                 <button
                   onClick={toggleForm}
-                  class="btn btn-lg btn-block text-uppercase"
+                  className="btn btn-lg btn-block text-uppercase"
                 >
                   Already have an account? Sign in here.
                 </button>

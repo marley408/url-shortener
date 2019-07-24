@@ -34,6 +34,7 @@ router.post('/register', async (req, res) => {
 
 // login
 router.post('/login', async (req, res) => {
+  console.log(req.body);
   // validate data before we logging in
   const { error } = loginValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -48,9 +49,9 @@ router.post('/login', async (req, res) => {
 
   // create and assign token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).send(token);
+  // res.header('auth-token', token).send(token);
 
-  res.send('Logged In');
+  res.json({ token });
 });
 
 module.exports = router;
