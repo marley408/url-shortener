@@ -17,7 +17,7 @@ app.use(
   })
 );
 // allows us to accept json data into our API
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: true }));
 
 // define routes
 app.use('/', require('./routes/index'));

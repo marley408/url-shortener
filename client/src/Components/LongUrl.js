@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import ShortUrl from './ShortUrl';
 
-const LongUrl = ({ toggleUrlBox }) => {
-  const [url, setUrl] = useState(null);
+const LongUrl = ({ toggleUrlBox, isLongUrlShowing }) => {
+  const [url, setUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState('');
+  console.log(isLongUrlShowing);
 
   // connect to api
   const shortenBtn = e => {
-    // if input form is blank
-    if (url === null) {
-      alert('You need to enter a url');
+    // if input form is blank when submit is clicked
+    if (url === '') {
+      return;
     } else {
-      e.preventDefault();
       fetch('http://localhost:5000/api/url/shorten', {
         mode: 'cors',
         credentials: 'include',
@@ -22,28 +24,42 @@ const LongUrl = ({ toggleUrlBox }) => {
           longUrl: url
         })
       })
-        // GET request
-        .then()
+        .then(res => res.json())
+        .then(data => {
+          setUrl('');
+          toggleUrlBox(!isLongUrlShowing);
+          setShortUrl(data.shortUrl);
+        });
 
-        // render shortUrl component
-        .then();
+      // render shortUrl component
+      // clear long url input form - useEffect()
+      // .then();
     }
   };
 
+  if (shortUrl !== '' && !isLongUrlShowing) {
+    return <ShortUrl toggleUrlBox={toggleUrlBox} shortUrl={shortUrl} />;
+  }
+
   return (
     <div className="container">
-      <form className="input-form">
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          shortenBtn();
+        }}
+        className="input-form"
+      >
         <input
           className="input-bar"
           type="text"
+          value={url}
           placeholder="Paste link here"
+          onChange={e => {
+            setUrl(e.target.value);
+          }}
         />
-        <button
-          onChange={setUrl}
-          onClick={toggleUrlBox}
-          className="shorten-button"
-          type="submit"
-        >
+        <button className="shorten-button" type="submit">
           Shorten
         </button>
       </form>

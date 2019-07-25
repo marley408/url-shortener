@@ -12,10 +12,11 @@ const Url = require('../models/Url');
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const baseUrl = config.get('baseUrl');
+  console.log(longUrl);
 
   // check base url
   if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json('invalid base url');
+    return res.status(422).json('invalid base url');
   }
 
   // create url code
@@ -46,7 +47,7 @@ router.post('/shorten', async (req, res) => {
       res.status(500).json('server error');
     }
   } else {
-    res.status(401).json('invalid long url');
+    res.status(422).json('invalid long url');
   }
 });
 

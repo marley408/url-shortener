@@ -5,28 +5,14 @@ import ShortUrl from '../Components/ShortUrl';
 
 const Home = () => {
   const [isLongUrlShowing, setState] = useState(true);
-  console.log(isLongUrlShowing);
-
-  // if isLongUrlShowing is true display LongUrl component and pass prop to change state to false on button click
-  const renderUrlBox = () => {
-    if (isLongUrlShowing) {
-      return <LongUrl toggleUrlBox={() => setState(!isLongUrlShowing)} />;
-    } else {
-      return (
-        // make GET request here?
-
-        <ShortUrl
-          shortUrl={'replace this with new url'}
-          toggleUrlBox={() => setState(!isLongUrlShowing)}
-        />
-      );
-    }
-  };
 
   return (
     <>
       <Navbar />
-      {renderUrlBox()}
+      <LongUrl
+        isLongUrlShowing={isLongUrlShowing}
+        toggleUrlBox={() => setState(!isLongUrlShowing)}
+      />
       {/* <div className="App">
         <form className="input-form">
           <input
