@@ -3,30 +3,35 @@ import '../Landing.css';
 import '../App.css';
 
 const Login = ({ toggleForm }) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const signIn = e => {
-    e.preventDefault();
-    fetch('http://localhost:5000/api/user/login', {
-      mode: 'cors',
-      credentials: 'include',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
+  const signInBtn = e => {
+    if (email === '' && password === '') {
+      return;
+    } else {
+      fetch('http://localhost:5000/api/user/login', {
+        mode: 'cors',
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
       })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-        }
-      });
+        .then(res => res.json())
+        .then(data => {
+          setEmail('');
+          setPassword('');
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+          }
+        });
+    }
   };
 
   return (
@@ -36,7 +41,13 @@ const Login = ({ toggleForm }) => {
           <div className="card card-signin my-5">
             <div className="card-body">
               <h5 className="card-title text-center">Sign In</h5>
-              <form className="form-signin">
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  signInBtn();
+                }}
+                className="form-signin"
+              >
                 <div className="form-label-group">
                   <input
                     onChange={e => {
@@ -67,7 +78,6 @@ const Login = ({ toggleForm }) => {
                 </div>
 
                 <button
-                  onClick={e => signIn(e)}
                   className="btn btn-lg btn-block text-uppercase"
                   type="submit"
                 >

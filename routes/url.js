@@ -3,12 +3,14 @@ const router = express.Router();
 const validUrl = require('valid-url');
 const shortid = require('shortid');
 const config = require('config');
+const User = require('../models/User');
 
 const Url = require('../models/Url');
 
 // @route POST /api/url/shorten
 // @desc create short URL
 
+// we need to create a short url and add it to a specific users doc
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const baseUrl = config.get('baseUrl');
@@ -39,6 +41,13 @@ router.post('/shorten', async (req, res) => {
           date: new Date()
         });
         await url.save();
+
+        const user = await User.findOneAndUpdate(
+          { _id: '5d3a0f853d4b9305eefc6c8b' },
+          { $push: { urls: url } }
+        );
+
+        console.log(user);
 
         res.json(url);
       }

@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
+import { set } from 'mongoose';
 
 // will need to use useEffect here to make call to api to update/display link history
 
 const History = () => {
+  const [urls, setUrls] = useState([]);
+
+  useEffect(() => {
+    const fetchUrls = async () => {
+      const res = await fetch('http://localhost:5000/api/user/history');
+      const data = await res.json();
+
+      setUrls(data);
+    };
+
+    fetchUrls();
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -16,33 +30,19 @@ const History = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>7/18/19</td>
-            <td>
-              <a className="url" href="facebook.com">
-                https://www.facebook.com/
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>7/17/19</td>
-            <td>
-              <a className="url" href="facebook.com">
-                https://www.facebook.com/
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>7/16/19</td>
-            <td>
-              <a className="url" href="facebook.com">
-                https://www.facebook.com/
-              </a>
-            </td>
-          </tr>
+          {urls.map((url, i) => {
+            return (
+              <tr>
+                <th scope="row">{i + 1}</th>
+                <td>{url.date}</td>
+                <td>
+                  <a className="url" href={url.shortUrl}>
+                    {url.shortUrl}
+                  </a>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

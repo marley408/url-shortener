@@ -5,17 +5,16 @@ import '../App.css';
 const Register = props => {
   const { toggleForm } = props;
 
-  const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [confirmPassword, setConfirmPassword] = useState(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   // if passwords do not match, alert user and do not submit form
   const registerBtn = e => {
     if (confirmPassword !== password) {
       alert('passwords dont match');
     } else {
-      e.preventDefault();
       fetch('http://localhost:5000/api/user/register', {
         mode: 'cors',
         credentials: 'include',
@@ -46,7 +45,13 @@ const Register = props => {
           <div className="card card-signin my-5">
             <div className="card-body">
               <h5 className="card-title text-center">Sign Up</h5>
-              <form className="form-signin">
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  registerBtn();
+                }}
+                className="form-signin"
+              >
                 <div className="form-label-group">
                   <input
                     onChange={e => {
@@ -71,7 +76,6 @@ const Register = props => {
                     className="form-control"
                     placeholder="Email address"
                     required
-                    autoFocus
                   />
                   <label htmlFor="inputEmail">Email address</label>
                 </div>
@@ -104,7 +108,6 @@ const Register = props => {
                 </div>
 
                 <button
-                  onClick={e => registerBtn(e)}
                   className="btn btn-lg btn-block text-uppercase"
                   type="submit"
                 >
