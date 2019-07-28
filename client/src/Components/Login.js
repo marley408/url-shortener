@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+// import { UserContext } from './UserContext';
 import '../Landing.css';
 import '../App.css';
 
 const Login = ({ toggleForm }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [id, setId] = useContext(UserContext);
+  // const [name, setName] = useContext(UserContext);
 
   const signInBtn = e => {
     if (email === '' && password === '') {
@@ -29,6 +32,8 @@ const Login = ({ toggleForm }) => {
           setPassword('');
           if (data.token) {
             localStorage.setItem('token', data.token);
+            // setId(data._id);
+            // setName(data.name);
           }
         });
     }

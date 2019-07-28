@@ -5,6 +5,7 @@ import Register from '../Components/Register';
 
 const Landing = () => {
   const [isLoginShowing, setState] = useState(true);
+
   // console.log(isLoginShowing);
 
   const renderForm = () => {
