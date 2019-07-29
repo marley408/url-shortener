@@ -12,7 +12,7 @@ A full stack application built on the MERN stack. Users can sign in or register 
    3. Enter/ replace your password into the new mongoURI
 4. Run command: npm run dev (This will run Concurrently and nodemon on both client and server)
 
-## Technologies:
+## Features:
 
 - REST API
 - JWT Authentication
