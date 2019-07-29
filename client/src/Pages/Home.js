@@ -14,7 +14,13 @@ const Home = () => {
         isLongUrlShowing={isLongUrlShowing}
         toggleUrlBox={() => setState(!isLongUrlShowing)}
       />
-      {/* <div className="App">
+    </div>
+  );
+};
+
+export default Home;
+
+/* <div className="App">
         <form className="input-form">
           <input
             className="input-bar"
@@ -31,9 +37,4 @@ const Home = () => {
             Go back
           </button>
         </div>
-      </div> */}
-    </div>
-  );
-};
-
-export default Home;
+      </div> */

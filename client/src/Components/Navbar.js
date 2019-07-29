@@ -36,7 +36,13 @@ export default class Navbar extends Component {
                 </NavLink>
               </li>
               <li className="nav-item sign-out">
-                <NavLink className="nav-link" to="/">
+                <NavLink
+                  onClick={() => {
+                    localStorage.removeItem('token');
+                  }}
+                  className="nav-link"
+                  to="/"
+                >
                   Sign out
                 </NavLink>
               </li>

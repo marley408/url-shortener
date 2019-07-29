@@ -1,13 +1,19 @@
 import React, { useState, useContext } from 'react';
-// import { UserContext } from './UserContext';
+import { UserContext } from './UserContext';
 import '../Landing.css';
 import '../App.css';
+import { Redirect } from 'react-router';
 
 const Login = ({ toggleForm }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [id, setId] = useContext(UserContext);
-  // const [name, setName] = useContext(UserContext);
+  const [successfulLogin, setSuccessfulLogin] = useState(false);
+  const { setId, setGlobalName } = useContext(UserContext);
+
+  const clearForm = () => {
+    setEmail('');
+    setPassword('');
+  };
 
   const signInBtn = e => {
     if (email === '' && password === '') {
@@ -28,16 +34,20 @@ const Login = ({ toggleForm }) => {
       })
         .then(res => res.json())
         .then(data => {
-          setEmail('');
-          setPassword('');
+          clearForm();
           if (data.token) {
             localStorage.setItem('token', data.token);
-            // setId(data._id);
-            // setName(data.name);
+            setSuccessfulLogin(true);
+            setId(data.userId);
+            setGlobalName(data.userName);
           }
         });
     }
   };
+
+  if (successfulLogin) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <div className="container login-register">

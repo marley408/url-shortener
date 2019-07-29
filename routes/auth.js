@@ -24,9 +24,17 @@ router.post('/register', async (req, res) => {
     email: req.body.email,
     password: hashPassword
   });
+
   try {
     const savedUser = await user.save();
-    res.send({ user: user.id });
+
+    // create and assign token
+    const token = jwt.sign(
+      { _id: savedUser._id, name: savedUser.name },
+      process.env.TOKEN_SECRET
+    );
+
+    res.send({ token });
   } catch (err) {
     res.status(400).send(err);
   }
@@ -48,10 +56,13 @@ router.post('/login', async (req, res) => {
   if (!validPass) return res.status(400).send('Invalid password');
 
   // create and assign token
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: user._id, name: user.name },
+    process.env.TOKEN_SECRET
+  );
   // res.header('auth-token', token).send(token);
 
-  res.json({ token });
+  res.json({ token, userId: user._id, userName: user.name });
 });
 
 module.exports = router;

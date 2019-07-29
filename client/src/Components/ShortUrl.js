@@ -3,10 +3,6 @@ import React from 'react';
 const ShortUrl = props => {
   const { toggleUrlBox, shortUrl } = props;
 
-  const backBtn = () => {
-    // back button will need to render a blank long url input form
-  };
-
   return (
     <div className="container">
       <div className="new-url">

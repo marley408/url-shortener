@@ -3,11 +3,10 @@ import { UserContext } from './UserContext';
 
 const Greeting = () => {
   const context = useContext(UserContext);
-  console.log(context);
 
   return (
-    <div className="jumbotron">
-      <h1 className="display-4">Hello, {context.name}!</h1>
+    <div className="jumbotron col-lg-8 mx-auto">
+      <h1 className="display-4">Hello, {context.globalName}!</h1>
     </div>
   );
 };

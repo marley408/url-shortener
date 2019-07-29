@@ -43,7 +43,7 @@ router.post('/shorten', async (req, res) => {
         await url.save();
 
         const user = await User.findOneAndUpdate(
-          { _id: '5d3a0f853d4b9305eefc6c8b' },
+          { _id: req.query.userId },
           { $push: { urls: url } }
         );
 

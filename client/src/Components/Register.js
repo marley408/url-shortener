@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from './UserContext';
+import { Redirect } from 'react-router';
 import '../Landing.css';
 import '../App.css';
 
@@ -9,6 +11,15 @@ const Register = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [successfulLogin, setSuccessfulLogin] = useState(false);
+  const { setId, setGlobalName } = useContext(UserContext);
+
+  const clearForm = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
 
   // if passwords do not match, alert user and do not submit form
   const registerBtn = e => {
@@ -31,12 +42,20 @@ const Register = props => {
       })
         .then(res => res.json())
         .then(data => {
+          clearForm();
           if (data.token) {
             localStorage.setItem('token', data.token);
+            setSuccessfulLogin(true);
+            setId(data.userId);
+            setGlobalName(data.userName);
           }
         });
     }
   };
+
+  if (successfulLogin) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <div className="container login-register">
@@ -114,10 +133,7 @@ const Register = props => {
                   Register
                 </button>
                 <hr className="my-4" />
-                <button
-                  onClick={toggleForm}
-                  className="btn btn-lg btn-block text-uppercase"
-                >
+                <button className="btn btn-lg btn-block text-uppercase">
                   Already have an account? Sign in here.
                 </button>
               </form>
