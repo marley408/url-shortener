@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from './UserContext';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import '../Landing.css';
 import '../App.css';
 
@@ -31,8 +31,8 @@ const Register = props => {
         credentials: 'include',
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'auth-token': localStorage.getItem('token')
+          'Content-Type': 'application/json'
+          // 'auth-token': localStorage.getItem('token')
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({
@@ -134,7 +134,10 @@ const Register = props => {
                   Register
                 </button>
                 <hr className="my-4" />
-                <button className="btn btn-lg btn-block text-uppercase">
+                <button
+                  onClick={toggleForm}
+                  className="btn btn-lg btn-block text-uppercase"
+                >
                   Already have an account? Sign in here.
                 </button>
               </form>

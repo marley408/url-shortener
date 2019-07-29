@@ -24,8 +24,8 @@ const Login = ({ toggleForm }) => {
         credentials: 'include',
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'auth-token': localStorage.getItem('token')
+          'Content-Type': 'application/json'
+          // 'auth-token': localStorage.getItem('token')
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({
@@ -42,6 +42,9 @@ const Login = ({ toggleForm }) => {
             setId(data.userId);
             setGlobalName(data.userName);
           }
+        })
+        .catch(err => {
+          alert('email or password is invalid');
         });
     }
   };

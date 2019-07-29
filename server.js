@@ -3,8 +3,6 @@ const connectDB = require('./config/db');
 const authRoute = require('./routes/auth');
 const linkHistory = require('./routes/linkHistory');
 const cors = require('cors');
-// example route
-const postRoute = require('./routes/example');
 
 const app = express();
 
@@ -25,8 +23,6 @@ app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
 app.use('/api/user', authRoute);
 app.use('/api/user', linkHistory);
-// this was an example. will not be used
-app.use('/api/posts', postRoute);
 
 const PORT = 5000;
 

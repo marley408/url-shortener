@@ -2,12 +2,11 @@ const router = require('express').Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const verify = require('./verifyToken');
 
 require('dotenv').config();
 const { registerValidation, loginValidation } = require('../validation');
 
-router.post('/register', verify, async (req, res) => {
+router.post('/register', async (req, res) => {
   // validate data before we create a user
   const { error } = registerValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -43,8 +42,7 @@ router.post('/register', verify, async (req, res) => {
 });
 
 // login
-router.post('/login', verify, async (req, res) => {
-  console.log(req.body);
+router.post('/login', async (req, res) => {
   // validate data before we logging in
   const { error } = loginValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);

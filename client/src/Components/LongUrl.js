@@ -5,7 +5,6 @@ import { UserContext } from './UserContext';
 const LongUrl = ({ toggleUrlBox, isLongUrlShowing }) => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
-  console.log(isLongUrlShowing);
 
   const context = useContext(UserContext);
 

@@ -17,10 +17,6 @@
   background-color: rgb(97, 97, 97);
 }
 
-.sign-out {
-  color: lightcoral;
-}
-
 /* URL input form */
 .input-form {
   min-height: 10vh;
@@ -50,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .display-section {
@@ -86,7 +82,8 @@ a:hover {
   margin-top: 5%;
 }
 
+/* greeting page */
 .jumbotron {
-  /* margin-top: 2.5%; */
+  margin-top: 2.5%;
   background-color: whitesmoke;
 }

@@ -7,13 +7,16 @@ import { UserContext } from '../Components/UserContext';
 const History = () => {
   const [urls, setUrls] = useState([]);
   const context = useContext(UserContext);
-  console.log(context);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
     const fetchUrls = async () => {
       const res = await fetch(
         `http://localhost:5000/api/user/history?userId=${context.id}`,
         {
+          signal: signal,
           headers: {
             'auth-token': localStorage.getItem('token')
           }
@@ -25,7 +28,11 @@ const History = () => {
     };
 
     fetchUrls();
-  }, []);
+
+    return function cleanup() {
+      abortController.abort();
+    };
+  }, [context.id]);
 
   return (
     <div>
