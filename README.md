@@ -7,9 +7,9 @@ A full stack application built on the MERN stack. Users can sign in or register 
 1. Clone repo
 2. Run npm install
 3. Create Mongo DB Atlas cluster
-   i. Create user and set password and add IP address
-   ii. Navigate to default.json file and replace your new mongoURI with current mongoURI
-   iii. Enter your password into the mongoURI
+   1. Create user and set password and add IP address
+   2. Navigate to default.json file and replace your new mongoURI with current mongoURI
+   3. Enter your password into the mongoURI
 4. Run command: npm run dev (This will run Concurrently and nodemon on both client and server)
 
 ## Technologies:
