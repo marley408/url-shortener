@@ -31,7 +31,8 @@ const Register = props => {
         credentials: 'include',
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token')
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({

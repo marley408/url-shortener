@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ShortUrl from './ShortUrl';
+import { UserContext } from './UserContext';
 
 const LongUrl = ({ toggleUrlBox, isLongUrlShowing }) => {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   console.log(isLongUrlShowing);
+
+  const context = useContext(UserContext);
 
   // connect to api
   const shortenBtn = e => {
@@ -12,12 +15,13 @@ const LongUrl = ({ toggleUrlBox, isLongUrlShowing }) => {
     if (url === '') {
       return;
     } else {
-      fetch('http://localhost:5000/api/url/shorten', {
+      fetch(`http://localhost:5000/api/url/shorten?userId=${context.id}`, {
         mode: 'cors',
         credentials: 'include',
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token')
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({

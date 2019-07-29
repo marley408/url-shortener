@@ -12,7 +12,12 @@ const History = () => {
   useEffect(() => {
     const fetchUrls = async () => {
       const res = await fetch(
-        `http://localhost:5000/api/user/history?userId=${context.id}`
+        `http://localhost:5000/api/user/history?userId=${context.id}`,
+        {
+          headers: {
+            'auth-token': localStorage.getItem('token')
+          }
+        }
       );
       const data = await res.json();
 
