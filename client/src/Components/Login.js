@@ -104,7 +104,10 @@ const Login = ({ toggleForm }) => {
                 </button>
                 <hr className="my-4" />
                 <button
-                  onClick={toggleForm}
+                  onClick={e => {
+                    e.preventDefault();
+                    toggleForm();
+                  }}
                   className="btn btn-lg btn-google btn-block text-uppercase"
                 >
                   No account? Register here.

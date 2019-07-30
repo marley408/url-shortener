@@ -135,7 +135,10 @@ const Register = props => {
                 </button>
                 <hr className="my-4" />
                 <button
-                  onClick={toggleForm}
+                  onClick={e => {
+                    e.preventDefault();
+                    toggleForm();
+                  }}
                   className="btn btn-lg btn-block text-uppercase"
                 >
                   Already have an account? Sign in here.
