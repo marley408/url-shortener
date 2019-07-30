@@ -49,7 +49,12 @@ const History = () => {
                 <th scope="row">{i + 1}</th>
                 <td>{url.date}</td>
                 <td>
-                  <a className="url" href={url.shortUrl}>
+                  <a
+                    className="url"
+                    href={url.shortUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {url.shortUrl}
                   </a>
                 </td>
