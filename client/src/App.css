@@ -54,6 +54,11 @@
   border: none;
   padding: 10px;
   background-color: white;
+  overflow-x: scroll;
+}
+
+.display-section span {
+  white-space: nowrap;
 }
 
 .back-button {
