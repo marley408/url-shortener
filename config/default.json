@@ -1,4 +1,4 @@
 {
   "mongoURI": "mongodb+srv://matt:dbMarley@cluster0-okkj7.mongodb.net/test?retryWrites=true&w=majority",
-  "baseUrl": "https://shortly-url-shortener.herokuapp.com/"
+  "baseUrl": "https://shortly-url-shortener.herokuapp.com"
 }
