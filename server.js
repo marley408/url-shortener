@@ -11,7 +11,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://admiring-kepler-c78b23.netlify.com/',
     credentials: true
   })
 );
