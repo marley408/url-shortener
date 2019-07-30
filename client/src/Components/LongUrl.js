@@ -14,7 +14,7 @@ const LongUrl = ({ toggleUrlBox, isLongUrlShowing }) => {
     if (url === '') {
       return;
     } else {
-      fetch(`http://localhost:5000/api/url/shorten?userId=${context.id}`, {
+      fetch(`/api/url/shorten?userId=${context.id}`, {
         mode: 'cors',
         credentials: 'include',
         method: 'POST',

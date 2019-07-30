@@ -13,15 +13,12 @@ const History = () => {
     const signal = abortController.signal;
 
     const fetchUrls = async () => {
-      const res = await fetch(
-        `http://localhost:5000/api/user/history?userId=${context.id}`,
-        {
-          signal: signal,
-          headers: {
-            'auth-token': localStorage.getItem('token')
-          }
+      const res = await fetch(`/api/user/history?userId=${context.id}`, {
+        signal: signal,
+        headers: {
+          'auth-token': localStorage.getItem('token')
         }
-      );
+      });
       const data = await res.json();
 
       setUrls(data);

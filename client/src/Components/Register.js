@@ -26,7 +26,7 @@ const Register = props => {
     if (confirmPassword !== password) {
       alert('passwords dont match');
     } else {
-      fetch('http://localhost:5000/api/user/register', {
+      fetch('/api/user/register', {
         mode: 'cors',
         credentials: 'include',
         method: 'POST',

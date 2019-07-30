@@ -19,7 +19,7 @@ const Login = ({ toggleForm }) => {
     if (email === '' && password === '') {
       return;
     } else {
-      fetch('http://localhost:5000/api/user/login', {
+      fetch('/api/user/login', {
         mode: 'cors',
         credentials: 'include',
         method: 'POST',
